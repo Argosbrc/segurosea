@@ -1,0 +1,20 @@
+{
+  "name": "segurosea",
+  "version": "1.0.0",
+  "description": "Sitio web de S.E.A. Seguros",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Argosbrc/segurosea.git"
+  },
+  "keywords": [],
+  "author": "Argos IT",
+  "license": "ISC",
+  "devDependencies": {
+    "vite": "^6.0.0"
+  }
+}
