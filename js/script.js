@@ -84,6 +84,70 @@ quoteButtons.forEach(btn => {
 });
 
 
+/* ================= CARRUSEL COMPAÑÍAS (LOOP + FOCO CENTRAL A COLOR) ================= */
+const brandsWrapper = document.getElementById("brands-wrapper");
+const brandsTrack = document.getElementById("brands-track");
+
+if (brandsWrapper && brandsTrack) {
+    const brandItems = brandsTrack.querySelectorAll(".brand-item");
+    let brandScroll = 0;
+    let brandPaused = false;
+    const brandSpeed = 0.85;
+
+    brandsWrapper.addEventListener("mouseenter", () => {
+        brandPaused = true;
+    });
+
+    brandsWrapper.addEventListener("mouseleave", () => {
+        brandPaused = false;
+    });
+
+    function updateCenterBrand() {
+        const wrapperRect = brandsWrapper.getBoundingClientRect();
+        const centerX = wrapperRect.left + wrapperRect.width / 2;
+
+        let closestItem = null;
+        let minDistance = Infinity;
+
+        brandItems.forEach(item => {
+            const rect = item.getBoundingClientRect();
+            const itemCenterX = rect.left + rect.width / 2;
+            const distance = Math.abs(centerX - itemCenterX);
+
+            if (distance < minDistance) {
+                minDistance = distance;
+                closestItem = item;
+            }
+        });
+
+        brandItems.forEach(item => {
+            if (item === closestItem && minDistance < 120) {
+                item.classList.add("is-center");
+            } else {
+                item.classList.remove("is-center");
+            }
+        });
+    }
+
+    function brandsLoop() {
+        const halfWidth = brandsTrack.scrollWidth / 2;
+
+        if (!brandPaused && halfWidth > 0) {
+            brandScroll += brandSpeed;
+            if (brandScroll >= halfWidth) {
+                brandScroll -= halfWidth;
+            }
+            brandsWrapper.scrollLeft = Math.floor(brandScroll);
+        }
+
+        updateCenterBrand();
+        requestAnimationFrame(brandsLoop);
+    }
+
+    requestAnimationFrame(brandsLoop);
+}
+
+
 /* ================= CARRUSEL SECTORES (AUTO + MOUSE + TOUCH) ================= */
 const sectorWrapper = document.getElementById("sector-wrapper");
 const sectorSlider = document.getElementById("sector-slider");

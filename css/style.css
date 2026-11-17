@@ -57,20 +57,19 @@ a {
 }
 
 
-/* ================= HEADER ================= */
+/* ================= HEADER COMPACTO ================= */
 
 .header {
     background: var(--cream);
     position: sticky;
     top: 0;
     z-index: 100;
-    border-top: 5px solid var(--bordeaux);
+    border-top: 4px solid var(--bordeaux);
     box-shadow: 0 4px 20px rgba(62, 65, 70, 0.06);
 }
 
 .header-container {
-    min-height: 110px;
-    padding: 8px 0;
+    height: 74px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -85,20 +84,20 @@ a {
 
 .logo {
     width: auto;
-    height: 155px;
-    max-width: 260px;
+    height: 50px;
+    max-width: 240px;
     object-fit: contain;
-    margin: -15px 0;
 }
 
 .nav {
     display: flex;
-    gap: 30px;
+    gap: 28px;
 }
 
 .nav a {
     color: var(--graphite);
     font-weight: 500;
+    font-size: 0.96rem;
     transition: .3s;
 }
 
@@ -120,7 +119,7 @@ a {
 /* ================= HERO ================= */
 
 .hero {
-    min-height: 82vh;
+    min-height: 80vh;
     padding: 70px 0;
     position: relative;
     background:
@@ -211,11 +210,77 @@ a {
 }
 
 
+/* =====================================================
+   COMPAÑÍAS - CARRUSEL CON FOCO CENTRAL A COLOR
+===================================================== */
+
+.brands-strip {
+    background: var(--white);
+    padding: 34px 0 42px;
+    border-bottom: 1px solid rgba(62, 65, 70, 0.08);
+    scroll-margin-top: 85px;
+}
+
+.brands-label {
+    text-align: center;
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.6px;
+    color: var(--gray);
+    margin-bottom: 24px;
+}
+
+.brands-wrapper {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+}
+
+.brands-track {
+    display: flex;
+    align-items: center;
+    gap: 55px;
+    width: max-content;
+    padding: 10px 0;
+}
+
+.brand-item {
+    width: 155px;
+    height: 68px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 14px;
+    transition: transform 0.35s ease;
+}
+
+.brand-item img {
+    max-height: 54px;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    filter: grayscale(100%);
+    opacity: 0.45;
+    transition: filter 0.35s ease, opacity 0.35s ease, transform 0.35s ease;
+}
+
+.brand-item.is-center img,
+.brand-item:hover img {
+    filter: grayscale(0%);
+    opacity: 1;
+    transform: scale(1.16);
+}
+
+
 /* ================= ENCABEZADOS DE SECCIÓN ================= */
 
 .section {
     padding: 95px 0;
-    scroll-margin-top: 120px;
+    scroll-margin-top: 85px;
 }
 
 .section-light {
@@ -608,31 +673,6 @@ h3 {
 
 
 /* =====================================================
-   COMPAÑIAS
-===================================================== */
-
-.logos {
-    display: grid;
-    grid-template-columns: repeat(5,1fr);
-    gap: 35px;
-    align-items: center;
-}
-
-.logos img {
-    max-height: 70px;
-    object-fit: contain;
-    filter: grayscale(100%);
-    opacity: .75;
-    transition: .3s;
-}
-
-.logos img:hover {
-    filter: none;
-    opacity: 1;
-}
-
-
-/* =====================================================
    PREGUNTAS FRECUENTES (FAQ)
 ===================================================== */
 
@@ -952,22 +992,18 @@ footer {
 @media(max-width:1100px) {
     .nav {
         gap: 20px;
-        font-size: 0.95rem;
+        font-size: 0.92rem;
     }
 
     .logo {
-        height: 135px;
-        max-width: 220px;
+        height: 44px;
+        max-width: 210px;
     }
 }
 
 @media(max-width:950px) {
     .header-container {
-        min-height: 95px;
-    }
-
-    .section {
-        scroll-margin-top: 105px;
+        height: 68px;
     }
 
     .nav {
@@ -994,10 +1030,8 @@ footer {
     }
 
     .logo {
-        width: auto;
-        height: 135px;
-        max-width: 220px;
-        margin: -12px 0;
+        height: 44px;
+        max-width: 200px;
     }
 
     .about,
@@ -1024,10 +1058,6 @@ footer {
     #seguros .cards {
         grid-template-columns: repeat(2,1fr);
     }
-
-    .logos {
-        grid-template-columns: repeat(3,1fr);
-    }
 }
 
 @media(max-width:700px) {
@@ -1052,8 +1082,12 @@ footer {
         grid-template-columns: 1fr;
     }
 
-    .logos {
-        grid-template-columns: repeat(2,1fr);
+    .brands-track {
+        gap: 35px;
+    }
+
+    .brand-item {
+        width: 130px;
     }
 
     .sector-card {
